@@ -1,0 +1,75 @@
+name: Publish Android APK Release
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish-apk:
+    name: Build & Publish kAM Lite APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Decode Debug Keystore
+        run: |
+          if [ -f "debug.keystore.base64" ]; then
+            base64 -d debug.keystore.base64 > debug.keystore
+          fi
+
+      - name: Verify or Build APK
+        run: |
+          mkdir -p releases
+          if [ -f "releases/kAM-Lite.apk" ]; then
+            echo "Found prebuilt signed APK at releases/kAM-Lite.apk"
+            ls -lh releases/kAM-Lite.apk
+          else
+            echo "Prebuilt APK not found, will build via Gradle"
+          fi
+
+      - name: Setup JDK 17 (if rebuild needed)
+        if: ${{ hashFiles('releases/kAM-Lite.apk') == '' }}
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Gradle & Build APK (if rebuild needed)
+        if: ${{ hashFiles('releases/kAM-Lite.apk') == '' }}
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.13'
+
+      - name: Assemble Debug APK (if rebuild needed)
+        if: ${{ hashFiles('releases/kAM-Lite.apk') == '' }}
+        run: |
+          gradle :app:assembleDebug
+          cp app/build/outputs/apk/debug/app-debug.apk releases/kAM-Lite.apk
+
+      - name: Create or Update Latest GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: "kAM Lite - أحدث نسخة للأندرويد (APK)"
+          body: |
+            ## 📲 تحميل تطبيق kAM Lite للأندرويد
+            
+            اضغط على ملف **`kAM-Lite.apk`** بالأسفل تحت قسم **Assets** لتحميل التطبيق وتثبيته مباشرة على هاتفك.
+            
+            ### خطوات التثبيت السريعة:
+            1. حمّل ملف **`kAM-Lite.apk`** على هاتفك الأندرويد.
+            2. افتح الملف من إشعارات التنزيل أو مدير الملفات واضغط **تثبيت (Install)**.
+            3. إذا ظهر تنبيه من المتصفح، فعّل خيار **السماح بتثبيت التطبيقات من هذا المصدر**.
+            4. إذا ظهرت نافذة **Google Play Protect** (لأن التطبيق نسخة خاصة بالخدمة خارج متجر Play)، اضغط على **مزيد من التفاصيل (More details)** ثم **التثبيت على أي حال (Install anyway)**.
+          draft: false
+          prerelease: false
+          files: |
+            releases/kAM-Lite.apk
