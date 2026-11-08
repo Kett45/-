@@ -1,6 +1,6 @@
 {
-  "summary":  "خطة إتاحة التحميل المباشر لملف APK من GitHub عبر دمج ملف APK المحدث داخل المستودع مع إصدارات GitHub Releases التلقائية وواجهة README عربية منظمة.",
-  "updatedAt":  "2026-11-08T21:02:29.838503315Z",
+  "summary":  "خطة إصلاح خطأ 404 عند تحميل الـ APK من GitHub عبر تحويل الـ APK إلى ملفات نصية مشفرة بـ Base64 ترفعها أداة AI Studio بنجاح، ثم يقوم GitHub Actions بتجميعها ونشرها في Releases وتحديث روابط README الكاملة تلقائياً لأي اسم مستودع.",
+  "updatedAt":  "2026-11-08T21:12:28.341723726Z",
   "requestFeedback":  true,
   "userFacing":  true
 }

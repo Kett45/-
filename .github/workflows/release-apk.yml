@@ -12,47 +12,61 @@ permissions:
 
 jobs:
   publish-apk:
-    name: Build & Publish kAM Lite APK
+    name: Assemble & Publish kAM Lite APK
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Decode Debug Keystore
-        run: |
-          if [ -f "debug.keystore.base64" ]; then
-            base64 -d debug.keystore.base64 > debug.keystore
-          fi
-
-      - name: Verify or Build APK
+      - name: Reassemble Signed APK from Base64 Text Parts
         run: |
           mkdir -p releases
-          if [ -f "releases/kAM-Lite.apk" ]; then
-            echo "Found prebuilt signed APK at releases/kAM-Lite.apk"
+          if ls releases/apk_b64/part_*.b64 1> /dev/null 2>&1; then
+            echo "Reassembling APK from Base64 text parts..."
+            cat releases/apk_b64/part_*.b64 | tr -d '\r\n ' | base64 -d > releases/kAM-Lite.apk
+            ls -lh releases/kAM-Lite.apk
+            unzip -t releases/kAM-Lite.apk | tail -n 5
+          elif [ -f "releases/kAM-Lite.apk" ]; then
+            echo "Found existing binary APK at releases/kAM-Lite.apk"
             ls -lh releases/kAM-Lite.apk
           else
-            echo "Prebuilt APK not found, will build via Gradle"
+            echo "ERROR: No APK parts found in releases/apk_b64/"
+            exit 1
           fi
 
-      - name: Setup JDK 17 (if rebuild needed)
-        if: ${{ hashFiles('releases/kAM-Lite.apk') == '' }}
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: '17'
-
-      - name: Setup Gradle & Build APK (if rebuild needed)
-        if: ${{ hashFiles('releases/kAM-Lite.apk') == '' }}
-        uses: gradle/actions/setup-gradle@v4
-        with:
-          gradle-version: '8.13'
-
-      - name: Assemble Debug APK (if rebuild needed)
-        if: ${{ hashFiles('releases/kAM-Lite.apk') == '' }}
+      - name: Update README with Exact Repository Download URLs & Commit Binary APK
+        env:
+          REPO_SLUG: ${{ github.repository }}
+          BRANCH_NAME: ${{ github.ref_name }}
         run: |
-          gradle :app:assembleDebug
-          cp app/build/outputs/apk/debug/app-debug.apk releases/kAM-Lite.apk
+          python3 - << 'EOF'
+          import os
+          repo = os.environ.get("REPO_SLUG", "").strip()
+          branch = os.environ.get("BRANCH_NAME", "main").strip()
+          if repo and os.path.exists("README.md"):
+              with open("README.md", "r", encoding="utf-8") as f:
+                  content = f.read()
+              release_url = f"https://github.com/{repo}/releases/latest/download/kAM-Lite.apk"
+              raw_url = f"https://github.com/{repo}/raw/{branch}/releases/kAM-Lite.apk"
+              releases_page_url = f"https://github.com/{repo}/releases"
+              content = content.replace("releases/kAM-Lite.apk?raw=true", raw_url)
+              content = content.replace("./releases/kAM-Lite.apk?raw=true", raw_url)
+              content = content.replace("releases/kAM-Lite.apk", release_url)
+              with open("README.md", "w", encoding="utf-8") as f:
+                  f.write(content)
+              print("Updated README.md with full URLs:", release_url, raw_url)
+          EOF
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f releases/kAM-Lite.apk README.md
+          if ! git diff --staged --quiet; then
+            git commit -m "chore: publish binary kAM-Lite.apk and direct download links [skip ci]"
+            git push origin HEAD:${{ github.ref_name }} || true
+          fi
 
       - name: Create or Update Latest GitHub Release
         uses: softprops/action-gh-release@v2
@@ -64,11 +78,13 @@ jobs:
             
             اضغط على ملف **`kAM-Lite.apk`** بالأسفل تحت قسم **Assets** لتحميل التطبيق وتثبيته مباشرة على هاتفك.
             
+            - **رابط التحميل المباشر:** https://github.com/${{ github.repository }}/releases/latest/download/kAM-Lite.apk
+            
             ### خطوات التثبيت السريعة:
             1. حمّل ملف **`kAM-Lite.apk`** على هاتفك الأندرويد.
             2. افتح الملف من إشعارات التنزيل أو مدير الملفات واضغط **تثبيت (Install)**.
             3. إذا ظهر تنبيه من المتصفح، فعّل خيار **السماح بتثبيت التطبيقات من هذا المصدر**.
-            4. إذا ظهرت نافذة **Google Play Protect** (لأن التطبيق نسخة خاصة بالخدمة خارج متجر Play)، اضغط على **مزيد من التفاصيل (More details)** ثم **التثبيت على أي حال (Install anyway)**.
+            4. إذا ظهرت نافذة **Google Play Protect**، اضغط على **مزيد من التفاصيل (More details)** ثم **التثبيت على أي حال (Install anyway)**.
           draft: false
           prerelease: false
           files: |
