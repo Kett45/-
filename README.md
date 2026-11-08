@@ -9,9 +9,9 @@
 
 يمكنك تحميل أحدث نسخة من التطبيق وتثبيتها مباشرة على هاتفك الأندرويد بالضغط على أحد الأزرار التالية:
 
-[![تحميل مباشر لملف APK](https://img.shields.io/badge/📲_اضغط_هنا_لتحميل_التطبيق_مباشرة_(APK)-10B981?style=for-the-badge&logo=android&logoColor=white)](releases/kAM-Lite.apk?raw=true)
+[![تحميل مباشر لملف APK](https://img.shields.io/badge/📲_اضغط_هنا_لتحميل_التطبيق_مباشرة_(APK)-10B981?style=for-the-badge&logo=android&logoColor=white)](https://github.com/Kett45/-/raw/main/https://github.com/Kett45/-/releases/latest/download/kAM-Lite.apk)
 
-[![تحميل من الإصدارات Releases](https://img.shields.io/badge/📦_رابط_بديل_مباشر_(GitHub_Releases)-2563EB?style=for-the-badge&logo=github&logoColor=white)](releases/kAM-Lite.apk)
+[![تحميل من الإصدارات Releases](https://img.shields.io/badge/📦_رابط_بديل_مباشر_(GitHub_Releases)-2563EB?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Kett45/-/releases/latest/download/kAM-Lite.apk)
 
 > **💡 ملاحظة هامة بعد عمل Push to GitHub:**
 > - بمجرد رفع التحديث إلى GitHub، يقوم **GitHub Actions** تلقائياً خلال **15 ثانية** بتجهيز ملف **`kAM-Lite.apk`** ونشره في قسم **Releases** وتحديث الأزرار أعلاه بالرابط الكامل لمستودعك.
@@ -25,7 +25,7 @@
 
 ## 🛠️ خطوات تثبيت التطبيق على هاتفك الأندرويد
 
-1. **تنزيل الملف:** اضغط على زر **[📲 اضغط هنا لتحميل التطبيق مباشرة (APK)](releases/kAM-Lite.apk?raw=true)** في أعلى هذه الصفحة (أو من قسم **Releases** على يمين الصفحة).
+1. **تنزيل الملف:** اضغط على زر **[📲 اضغط هنا لتحميل التطبيق مباشرة (APK)](https://github.com/Kett45/-/raw/main/https://github.com/Kett45/-/releases/latest/download/kAM-Lite.apk)** في أعلى هذه الصفحة (أو من قسم **Releases** على يمين الصفحة).
 2. **فتح ملف التثبيت:** بعد اكتمال التنزيل، افتح ملف `kAM-Lite.apk` من شريط الإشعارات أو من مجلد التنزيلات (**Downloads**).
 3. **السماح بالتثبيت من المتصفح (إن طُلب منك):** إذا ظهرت رسالة *"لأغراض الأمان، لا يُسمح لهاتفك بتثبيت تطبيقات غير معروفة من هذا المصدر"*، اضغط على **الإعدادات (Settings)** ثم فعّل **السماح من هذا المصدر (Allow from this source)**.
 4. **تخطي فحص Play Protect (إن ظهر):** لأن التطبيق مخصص للخدمة ومرفوع مباشرة على GitHub وليس على متجر Google Play، قد تظهر نافذة من Play Protect؛ اضغط على **مزيد من التفاصيل (More details)** ثم **التثبيت على أي حال (Install anyway)**.
