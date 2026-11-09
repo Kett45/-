@@ -7,15 +7,14 @@
 
 ## 📲 تحميل التطبيق مباشرة للأندرويد (APK)
 
-يمكنك تحميل أحدث نسخة من التطبيق وتثبيتها مباشرة على هاتفك الأندرويد بالضغط على أحد الأزرار التالية:
+اضغط على الزر الأخضر التالي ليبدأ **تنزيل ملف `kAM-Lite.apk` فوراً ومباشرةً** على هاتفك بضغطة واحدة بدون أي صفحات وسيطة:
 
-[![تحميل مباشر لملف APK](https://img.shields.io/badge/📲_اضغط_هنا_لتحميل_التطبيق_مباشرة_(APK)-10B981?style=for-the-badge&logo=android&logoColor=white)](https://github.com/Kett45/-/raw/main/https://github.com/Kett45/-/releases/latest/download/kAM-Lite.apk)
+[![تحميل مباشر وفوري لملف APK](https://img.shields.io/badge/📲_اضغط_هنا_لتحميل_التطبيق_فوراً_(APK_مباشر)-10B981?style=for-the-badge&logo=android&logoColor=white)](https://kappa.lol/miHUnS.apk)
 
-[![تحميل من الإصدارات Releases](https://img.shields.io/badge/📦_رابط_بديل_مباشر_(GitHub_Releases)-2563EB?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Kett45/-/releases/latest/download/kAM-Lite.apk)
+**🔗 رابط التحميل الفوري المباشر (بضغطة واحدة):**
+### [https://kappa.lol/miHUnS.apk](https://kappa.lol/miHUnS.apk)
 
-> **💡 ملاحظة هامة بعد عمل Push to GitHub:**
-> - بمجرد رفع التحديث إلى GitHub، يقوم **GitHub Actions** تلقائياً خلال **15 ثانية** بتجهيز ملف **`kAM-Lite.apk`** ونشره في قسم **Releases** وتحديث الأزرار أعلاه بالرابط الكامل لمستودعك.
-> - **تأكد أن المستودع عام (Public):** إذا كان المستودع خاصاً (Private)، سيُظهر GitHub صفحة `404` لأي شخص يفتح الرابط من هاتفه دون تسجيل دخول. لتحويله إلى عام: اذهب إلى **Settings** أعلى المستودع -> انزل لآخر الصفحة عند **Danger Zone** -> اضغط **Change visibility** -> اختر **Make public**.
+**📦 رابط احتياطي إضافي:** [اضغط هنا للتحميل من السيرفر البديل (Gofile)](https://gofile.io/d/FRheyaQl)
 
 ---
 
@@ -25,10 +24,10 @@
 
 ## 🛠️ خطوات تثبيت التطبيق على هاتفك الأندرويد
 
-1. **تنزيل الملف:** اضغط على زر **[📲 اضغط هنا لتحميل التطبيق مباشرة (APK)](https://github.com/Kett45/-/raw/main/https://github.com/Kett45/-/releases/latest/download/kAM-Lite.apk)** في أعلى هذه الصفحة (أو من قسم **Releases** على يمين الصفحة).
+1. **تنزيل الملف:** اضغط على الزر الأخضر أعلاه أو على الرابط المباشر **[https://kappa.lol/miHUnS.apk](https://kappa.lol/miHUnS.apk)** ليبدأ تحميل ملف **`kAM-Lite.apk`** فوراً.
 2. **فتح ملف التثبيت:** بعد اكتمال التنزيل، افتح ملف `kAM-Lite.apk` من شريط الإشعارات أو من مجلد التنزيلات (**Downloads**).
 3. **السماح بالتثبيت من المتصفح (إن طُلب منك):** إذا ظهرت رسالة *"لأغراض الأمان، لا يُسمح لهاتفك بتثبيت تطبيقات غير معروفة من هذا المصدر"*، اضغط على **الإعدادات (Settings)** ثم فعّل **السماح من هذا المصدر (Allow from this source)**.
-4. **تخطي فحص Play Protect (إن ظهر):** لأن التطبيق مخصص للخدمة ومرفوع مباشرة على GitHub وليس على متجر Google Play، قد تظهر نافذة من Play Protect؛ اضغط على **مزيد من التفاصيل (More details)** ثم **التثبيت على أي حال (Install anyway)**.
+4. **تخطي فحص Play Protect (إن ظهر):** لأن التطبيق مخصص للخدمة ومرفوع مباشرة خارج متجر Google Play، قد تظهر نافذة من Play Protect؛ اضغط على **مزيد من التفاصيل (More details)** ثم **التثبيت على أي حال (Install anyway)**.
 5. **تسجيل الدخول والبدء:** افتح التطبيق وسجّل الدخول بحساب **Google** الخاص بك، ثم أنشئ مجموعة جديدة (للأمين) أو انضم برمز المجموعة اليومي المرسل لك (للخادم).
 
 ---
